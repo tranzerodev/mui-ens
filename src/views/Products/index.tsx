@@ -1,26 +1,12 @@
 import React from 'react'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-import {
-  Container,
-  Grid,
-  Typography,
-  Theme,
-  Button,
-  Paper,
-  FormControlLabel,
-  Checkbox,
-  Divider,
-} from '@material-ui/core'
+import { Container, Grid, Typography, Theme, Paper, FormControlLabel, Checkbox, Divider } from '@material-ui/core'
 import Chip from '@material-ui/core/Chip'
 import Box from '@material-ui/core/Box'
-import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder'
-import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined'
-import clsx from 'clsx'
-import { grey } from '@material-ui/core/colors'
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
 import LessonDetailCard from '../../components/LessonDetailCard'
 import Layout from '../../components/Layout/Layout'
-import { MOCK_CATEGORIES, MOCK_LANGUAGE_AND_SKILLS, MOCK_LESSONS_LIST, MOCK_LEVELS, SELECTED_OPTIONS } from './const'
+import { MOCK_FILTER_OPTIONS, MOCK_LESSONS_LIST, SELECTED_OPTIONS } from './const'
 import Hero from '../../components/Hero'
 import SearchBar from '../../components/SearchBar'
 import { SEARCH_PLACEHOLDER } from '../Home/const'
@@ -82,66 +68,28 @@ const Products: React.FC = (props) => {
         <Box my={4} clone>
           <Grid container>
             <Grid item md={3}>
-              <Paper elevation={0} classes={{ root: classes.whiteCornerRadiusWrapper }}>
-                <Box display="flex" justifyContent="space-between">
-                  <Box clone mb={1} fontWeight={600}>
-                    <Typography variant="subtitle1">Language & Skills</Typography>
+              {MOCK_FILTER_OPTIONS?.map((filterOption) => (
+                <Paper elevation={0} classes={{ root: classes.whiteCornerRadiusWrapper }}>
+                  <Box display="flex" justifyContent="space-between">
+                    <Box clone mb={1} fontWeight={600}>
+                      <Typography variant="subtitle1">Language & Skills</Typography>
+                    </Box>
+                    <KeyboardArrowUpIcon />
                   </Box>
-                  <KeyboardArrowUpIcon />
-                </Box>
-                <Box display="flex" flexDirection="column">
-                  {MOCK_LANGUAGE_AND_SKILLS.map((filterOption) => (
-                    <FormControlLabel
-                      control={<Checkbox color="primary" />}
-                      label={
-                        <Box clone fontWeight={400}>
-                          <Typography variant="h5">{filterOption}</Typography>
-                        </Box>
-                      }
-                    />
-                  ))}
-                </Box>
-              </Paper>
-              <Paper elevation={0} classes={{ root: classes.whiteCornerRadiusWrapper }}>
-                <Box display="flex" justifyContent="space-between">
-                  <Box clone mb={1} fontWeight={600}>
-                    <Typography variant="subtitle1">Category</Typography>
+                  <Box display="flex" flexDirection="column">
+                    {filterOption?.options?.map((option) => (
+                      <FormControlLabel
+                        control={<Checkbox color="primary" />}
+                        label={
+                          <Box clone fontWeight={400}>
+                            <Typography variant="h5">{option}</Typography>
+                          </Box>
+                        }
+                      />
+                    ))}
                   </Box>
-                  <KeyboardArrowUpIcon />
-                </Box>
-                <Box display="flex" flexDirection="column">
-                  {MOCK_CATEGORIES.map((filterOption) => (
-                    <FormControlLabel
-                      control={<Checkbox color="primary" />}
-                      label={
-                        <Box clone fontWeight={400}>
-                          <Typography variant="h5">{filterOption}</Typography>
-                        </Box>
-                      }
-                    />
-                  ))}
-                </Box>
-              </Paper>
-              <Paper elevation={0} classes={{ root: classes.whiteCornerRadiusWrapper }}>
-                <Box display="flex" justifyContent="space-between">
-                  <Box clone mb={1} fontWeight={600}>
-                    <Typography variant="subtitle1">Levels</Typography>
-                  </Box>
-                  <KeyboardArrowUpIcon />
-                </Box>
-                <Box display="flex" flexDirection="column">
-                  {MOCK_LEVELS.map((filterOption) => (
-                    <FormControlLabel
-                      control={<Checkbox color="primary" />}
-                      label={
-                        <Box clone fontWeight={400}>
-                          <Typography variant="h5">{filterOption}</Typography>
-                        </Box>
-                      }
-                    />
-                  ))}
-                </Box>
-              </Paper>
+                </Paper>
+              ))}
             </Grid>
             <Box pl={4} clone>
               <Grid item md={9}>

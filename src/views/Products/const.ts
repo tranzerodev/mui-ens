@@ -64,20 +64,20 @@ export const MOCK_LESSONS_LIST = [
   },
 ]
 
-export const MOCK_LANGUAGE_AND_SKILLS = [
-  'Grammar',
-  'Vocabulary',
-  'Reading',
-  'Writing',
-  'Listening',
-  'Speaking',
-  'Contextual',
-  'Functional',
+export const MOCK_FILTER_OPTIONS = [
+  {
+    title: 'Language & Skills',
+    options: ['Grammar', 'Vocabulary', 'Reading', 'Writing', 'Listening', 'Speaking', 'Contextual', 'Functional'],
+  },
+  {
+    title: 'Category',
+    options: ['Concept', 'Practice Questions', 'Worksheets', 'Activities', 'Games'],
+  },
+  {
+    title: 'Levels',
+    options: ['CEFR B1&B2'],
+  },
 ]
-
-export const MOCK_CATEGORIES = ['Concept', 'Practice Questions', 'Worksheets', 'Activities', 'Games']
-
-export const MOCK_LEVELS = ['CEFR B1&B2']
 
 export const SELECTED_OPTIONS = [
   'Topic: Vocabulary, Reading',

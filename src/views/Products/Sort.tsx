@@ -1,5 +1,4 @@
 import React from 'react'
-import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
@@ -25,6 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     label: {
       backgroundColor: theme.palette.common.white,
+      fontWeight: 400,
       border: 'none',
     },
     caretButton: {
@@ -42,8 +42,6 @@ export default function Sort() {
   const [open, setOpen] = React.useState(false)
   const anchorRef = React.useRef<HTMLDivElement>(null)
   const [selectedIndex, setSelectedIndex] = React.useState(0)
-
-  const handleClick = () => {}
 
   const handleMenuItemClick = (event: React.MouseEvent<HTMLLIElement, MouseEvent>, index: number) => {
     setSelectedIndex(index)
@@ -65,15 +63,18 @@ export default function Sort() {
   return (
     <Box>
       <ButtonGroup variant="outlined" ref={anchorRef} aria-label="split button" className={classes.buttonGroup}>
-        <Button onClick={handleClick} className={classes.label}>
-          Sort by: {options[selectedIndex]}
+        <Button className={classes.label} disabled>
+          Sort by:{' '}
+          <Box fontWeight={600} ml={1}>
+            {options[selectedIndex]}
+          </Box>
         </Button>
         <Button
           color="primary"
           size="small"
           aria-controls={open ? 'split-button-menu' : undefined}
           aria-expanded={open ? 'true' : undefined}
-          aria-label="select merge strategy"
+          aria-label="select filter"
           aria-haspopup="menu"
           onClick={handleToggle}
           className={classes.caretButton}
@@ -86,7 +87,7 @@ export default function Sort() {
           <Grow
             {...TransitionProps}
             style={{
-              transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
+              transformOrigin: placement === 'bottom' ? 'right-end' : 'right-end',
             }}
           >
             <Paper>

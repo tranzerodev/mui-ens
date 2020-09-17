@@ -1,5 +1,6 @@
 import React from 'react'
-import { Theme, Typography, ButtonBase, Box, Button } from '@material-ui/core'
+import Link from 'next/link'
+import { Theme, Typography, Box, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Hero from '../../components/Hero'
 
@@ -25,9 +26,11 @@ const FooterBanner: React.FC = () => {
             Accelerating Growth with Tools for Success
           </Typography>
         </Box>
-        <Button variant="contained" className={classes.createButton}>
-          Create Lesson Plan
-        </Button>
+        <Link passHref href="/lesson-planner">
+          <Button variant="contained" className={classes.createButton}>
+            Create Lesson Plan
+          </Button>
+        </Link>
       </Box>
     </Hero>
   )

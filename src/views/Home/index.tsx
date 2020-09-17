@@ -102,7 +102,7 @@ const Home: React.FC = (props) => {
           {/* Right Column */}
           <Grid className={classes.lastColumn} item xs={12} md={3}>
             {/* Lesson Plan */}
-            <LessonPlanCard link="/about" />
+            <LessonPlanCard link="/lesson-planner" />
             {/* Sidebar Items */}
             {SIDEBAR_ITEMS.map((item) => (
               <IconLink variant="outlined" icon={item.icon} title={item.title} link={item.link} />
