@@ -1,57 +1,74 @@
-import React from 'react'
-import { Box, Typography, Theme, Button, Paper } from '@material-ui/core'
-import makeStyles from '@material-ui/core/styles/makeStyles'
-import Rating from '@material-ui/lab/Rating'
-import LinearProgress from '@material-ui/core/LinearProgress'
-import { grey } from '@material-ui/core/colors'
-import { RATING_LIST, REVIEWS_PEOPLE_LIST } from './const'
-import ReviewCard from '../../components/ReviewCard'
+import React, { useState } from "react";
+import { Box, Typography, Theme, Button, Paper } from "@material-ui/core";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import Rating from "@material-ui/lab/Rating";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import { grey } from "@material-ui/core/colors";
+import { RATING_LIST, REVIEWS_PEOPLE_LIST } from "./const";
+import ReviewCard from "../../components/ReviewCard";
+import WriteReview from "./WriteReview";
 
 const useStyles = makeStyles((theme: Theme) => ({
   whiteCornerRadiusWrapper: {
     borderRadius: 10,
     padding: theme.spacing(4),
-    height: '100%',
+    height: "100%",
   },
   progress: {
-    width: '100%',
+    width: "100%",
     height: 5,
     borderRadius: 3,
     backgroundColor: theme.palette.custom.iron,
-    '& > div': {
+    "& > div": {
       backgroundColor: theme.palette.custom.dodgerBlue,
     },
   },
   peopleInfoListWrapper: {
-    '& > .MuiBox-root:not(:first-child)': {
+    "& > .MuiBox-root:not(:first-child)": {
       borderTop: `1px solid ${theme.palette.border.main}`,
     },
   },
-}))
+}));
 
 const ProductReviews: React.FC = (props) => {
-  const classes = useStyles(props)
-
+  const classes = useStyles(props);
+  const [popup, setPopup] = useState(false);
   return (
     <Paper elevation={0} classes={{ root: classes.whiteCornerRadiusWrapper }}>
       <Box display="flex" justifyContent="space-between" mb={0.75}>
         <Box clone fontSize={21} pb={3}>
           <Typography variant="h4">Reviews</Typography>
         </Box>
-        <Rating name="read-only" value={4.5} size="small" readOnly precision={0.5} />
+        <Rating
+          name="read-only"
+          value={4.5}
+          size="small"
+          readOnly
+          precision={0.5}
+        />
       </Box>
       <Box clone fontWeight={400} fontSize={18} mb={2}>
         <Typography variant="h4">Star Rating: 4.8 (40 votes)</Typography>
       </Box>
-      <Button color="primary" variant="contained" fullWidth>
+      <Button
+        color="primary"
+        variant="contained"
+        fullWidth
+        onClick={() => setPopup(true)}
+      >
         Write a review
       </Button>
+      <WriteReview openPopup={popup} setOpenPopup={setPopup} />
       {RATING_LIST.map((item) => (
         <Box mb={1.875} mt={2} display="flex" alignItems="center">
           <Box clone width={70} mr={1.5}>
             <Typography variant="body1">{item.stars} Stars</Typography>
           </Box>
-          <LinearProgress variant="determinate" className={classes.progress} value={item.percent} />
+          <LinearProgress
+            variant="determinate"
+            className={classes.progress}
+            value={item.percent}
+          />
           <Box clone width={60} ml={1.5}>
             <Typography variant="body1">{item.percent}%</Typography>
           </Box>
@@ -63,7 +80,7 @@ const ProductReviews: React.FC = (props) => {
         ))}
       </Box>
     </Paper>
-  )
-}
+  );
+};
 
-export default ProductReviews
+export default ProductReviews;
