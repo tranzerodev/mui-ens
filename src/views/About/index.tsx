@@ -60,9 +60,9 @@ const About: React.FC = () => {
                 Our Story
               </Typography>
               <Typography variant="subtitle1" className={classes.description}>
-                As a learner and educator ourselves, one of the many challengesis identifying gaps and giving the right
-                feedback to keep engagement and progression. We are passionate aboutlearning and sharing and be able to
-                dedicate more time to address gaps.
+                However, this can be challenging when youhave a busy schedule and juggling between planning, teaching,
+                and marking, just to name a few. EnglishSmith enables better teaching and learning by assisting you with
+                intuitive tools such as our resource portal, lesson organiser and writing & reading checker.
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6}>

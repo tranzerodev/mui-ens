@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Grid, Typography, Theme, Paper, Container } from '@material-ui/core'
+import { Box, Grid, Typography, Theme, Paper, Container, useMediaQuery } from '@material-ui/core'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Link from 'next/link'
 import Chip from '@material-ui/core/Chip'
@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   productSubTitle: {
     fontSize: theme.typography.pxToRem(21),
     margin: theme.spacing(5, 0, 1.875),
+    [theme.breakpoints.only('xs')]: {
+      margin: theme.spacing(3, 0, 1.875),
+    },
   },
   labelWithIcon: {
     color: blueGrey[600],
@@ -52,6 +55,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 const ProductHeader: React.FC = (props) => {
   const classes = useStyles(props)
   const theme = useTheme()
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
+
   const [selectedImage, setSelectedImage] = useState(MOCK_PRODUCT?.media?.[0])
 
   const carouselProps = {
@@ -108,46 +113,62 @@ const ProductHeader: React.FC = (props) => {
               )}
             </Grid>
             <Grid item xs={12} md={6}>
-              <Box p={4} pb={0}>
+              <Box pt={{ xs: 0, md: 4 }} pl={{ xs: 0, md: 4 }} pr={{ xs: 0, md: 4 }} my={1.5} pb={0}>
                 <Box clone mb={2}>
                   <Typography variant="h1" color="textPrimary">
                     Grammar Activites Vol 2.8 Interactive Grammar Notebook
                   </Typography>
                 </Box>
-                <Grid container spacing={5} alignItems="center">
-                  <Grid item>
-                    <Chip label="Worksheets" size="small" className={classes.chip} />
+
+                <Box
+                  clone
+                  flexDirection={isSmallScreen ? 'column' : 'row'}
+                  alignItems={isSmallScreen ? 'flex-start' : 'center'}
+                >
+                  <Grid container spacing={isSmallScreen ? 1 : 5}>
+                    <Grid item>
+                      <Chip label="Worksheets" size="small" className={classes.chip} />
+                    </Grid>
+
+                    <Box clone display="flex" alignItems="center">
+                      <Grid item className={classes.iconLabel}>
+                        <DescriptionOutlinedIcon fontSize="small" />
+                        <Typography variant="h5" className={classes.labelWithIcon}>
+                          {MOCK_PRODUCT.certification}
+                        </Typography>
+                      </Grid>
+                    </Box>
+
+                    <Box clone display="flex" alignItems="center">
+                      <Grid item className={classes.iconLabel}>
+                        <ScheduleOutlinedIcon fontSize="small" />
+                        <Typography variant="h5" className={classes.labelWithIcon}>
+                          {MOCK_PRODUCT.time} mins
+                        </Typography>
+                      </Grid>
+                    </Box>
+
+                    <Box clone display="flex" alignItems="center">
+                      <Grid item className={classes.iconLabel}>
+                        <PersonOutlineOutlinedIcon fontSize="small" />
+                        <Typography variant="h5" className={classes.labelWithIcon}>
+                          {MOCK_PRODUCT.level}
+                        </Typography>
+                      </Grid>
+                    </Box>
                   </Grid>
-                  <Box clone display="flex" alignItems="center">
-                    <Grid item className={classes.iconLabel}>
-                      <DescriptionOutlinedIcon fontSize="small" />
-                      <Typography variant="h5" className={classes.labelWithIcon}>
-                        {MOCK_PRODUCT.certification}
-                      </Typography>
-                    </Grid>
-                  </Box>
-                  <Box clone display="flex" alignItems="center">
-                    <Grid item className={classes.iconLabel}>
-                      <ScheduleOutlinedIcon fontSize="small" />
-                      <Typography variant="h5" className={classes.labelWithIcon}>
-                        {MOCK_PRODUCT.time} mins
-                      </Typography>
-                    </Grid>
-                  </Box>
-                  <Box clone display="flex" alignItems="center">
-                    <Grid item className={classes.iconLabel}>
-                      <PersonOutlineOutlinedIcon fontSize="small" />
-                      <Typography variant="h5" className={classes.labelWithIcon}>
-                        {MOCK_PRODUCT.level}
-                      </Typography>
-                    </Grid>
-                  </Box>
-                </Grid>
+                </Box>
+
                 <Typography variant="h4" className={classes.productSubTitle}>
                   What you will learn
                 </Typography>
                 {WHAT_YOU_WILL_LEARN_LIST.map((item) => (
-                  <Box display="flex" alignItems="center" mb={1.5} className={classes.checkListItem}>
+                  <Box
+                    display="flex"
+                    alignItems={isSmallScreen ? 'flex-start' : 'center'}
+                    mb={1.5}
+                    className={classes.checkListItem}
+                  >
                     <CheckIcon />
                     <Box clone ml={0.625}>
                       <Typography variant="subtitle1">{item}</Typography>

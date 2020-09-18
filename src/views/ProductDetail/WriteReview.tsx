@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import {
   Dialog,
   DialogTitle,
@@ -10,61 +10,52 @@ import {
   Box,
   Grid,
   TextField,
-} from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import { Rating } from "@material-ui/lab";
+} from '@material-ui/core'
+import CloseIcon from '@material-ui/icons/Close'
+import makeStyles from '@material-ui/core/styles/makeStyles'
+import { Rating } from '@material-ui/lab'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& > div >div": {
-      width: "35%",
+    '& > div >div': {
+      width: '35%',
       padding: theme.spacing(2),
-      borderRadius: "10px",
+      borderRadius: '10px',
     },
   },
   closeButton: {
-    position: "absolute",
+    position: 'absolute',
     right: theme.spacing(1),
     top: theme.spacing(1),
     color: theme.palette.grey[500],
   },
   heading: {
-    color: "#263238",
+    color: '#263238',
     paddingBottom: 0,
   },
   ratingLabel: {
-    verticalAlign: "top",
+    verticalAlign: 'top',
   },
-}));
+}))
 
 const WriteReview = (props: any) => {
-  const classes = useStyles();
-  const { openPopup, setOpenPopup } = props;
-  const [rating, setRating] = useState(0);
+  const classes = useStyles()
+  const { openPopup, setOpenPopup } = props
+  const [rating, setRating] = useState(0)
 
   const handleClose = () => {
-    setOpenPopup(false);
-  };
+    setOpenPopup(false)
+  }
 
   return (
-    <Dialog
-      onClose={handleClose}
-      open={openPopup}
-      maxWidth="md"
-      className={classes.root}
-    >
+    <Dialog onClose={handleClose} open={openPopup} maxWidth="md" className={classes.root}>
       <DialogTitle id="customized-dialog-title">
         <Box clone fontSize={21} pb={3}>
           <Typography className={classes.heading} variant="h4">
             Add Review
           </Typography>
         </Box>
-        <IconButton
-          aria-label="close"
-          onClick={handleClose}
-          className={classes.closeButton}
-        >
+        <IconButton aria-label="close" onClick={handleClose} className={classes.closeButton}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
@@ -82,15 +73,15 @@ const WriteReview = (props: any) => {
               value={rating}
               precision={0.5}
               onChange={(event, newValue) => {
-                setRating(newValue);
+                setRating(newValue)
               }}
             />
             {rating ? (
               <Typography variant="inherit" className={classes.ratingLabel}>
-                {rating} {rating <= 1 ? "Star" : "Stars"}
+                {rating} {rating <= 1 ? 'Star' : 'Stars'}
               </Typography>
             ) : (
-              ""
+              ''
             )}
           </Grid>
           <Grid item xs={12} sm={2}>
@@ -111,16 +102,11 @@ const WriteReview = (props: any) => {
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button
-          size="large"
-          color="primary"
-          variant="contained"
-          onClick={handleClose}
-        >
+        <Button size="large" color="primary" variant="contained" onClick={handleClose}>
           SUBMIT
         </Button>
       </DialogActions>
     </Dialog>
-  );
-};
-export default WriteReview;
+  )
+}
+export default WriteReview

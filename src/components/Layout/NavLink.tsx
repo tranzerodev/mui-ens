@@ -1,6 +1,6 @@
 import React from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
-import { Typography, Theme } from '@material-ui/core'
+import { Link as MUILink, Typography, Theme } from '@material-ui/core'
 import Link from 'next/link'
 
 interface NavLinkProps {
@@ -10,8 +10,9 @@ interface NavLinkProps {
 
 const useStyles = makeStyles((theme: Theme) => ({
   link: {
-    fontSize: theme.typography.button.fontSize,
-    opacity: 0.85,
+    fontSize: theme.typography.pxToRem(14),
+    fontWeight: 600,
+    letterSpacing: '0.07px',
   },
 }))
 
@@ -20,11 +21,11 @@ const NavLink: React.FC<NavLinkProps> = (props) => {
   const classes = useStyles()
 
   return (
-    <Link href={url} passHref>
-      <Typography className={classes.link} variant="body2" component="a">
-        {label}
-      </Typography>
-    </Link>
+    <Typography className={classes.link}>
+      <Link href={url} passHref>
+        <MUILink color="inherit">{label}</MUILink>
+      </Link>
+    </Typography>
   )
 }
 

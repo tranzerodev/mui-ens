@@ -67,6 +67,9 @@ const palette: Partial<Palette> = {
   link: '#304ffe',
   divider: '#f4f3f3',
   custom: {
+    skyBlue: '#2196f3',
+    paleTeal: '#607d8b',
+    brightRed: '#f44336',
     mirage: '#171725',
     manatee: '#92929D',
     midGray: '#696974',

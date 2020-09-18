@@ -85,13 +85,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   logoWrapper: {
-    width: 170,
-    textDecoration: 'none',
     display: 'flex',
-    [theme.breakpoints.down('sm')]: {
-      display: 'block',
-      textAlign: 'center',
-    },
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   logo: {
     height: '100%',
@@ -189,7 +185,7 @@ const NavBar: React.FC<NavBarProps> = (props) => {
       label: 'Home',
       render: (
         <Link href="/" passHref>
-          <Box className={classes.logoWrapper} component="a">
+          <Box className={classes.logoWrapper}>
             <img className={classes.logo} src="/logo.png" alt="logo" />
           </Box>
         </Link>
@@ -228,7 +224,7 @@ const NavBar: React.FC<NavBarProps> = (props) => {
     {
       label: 'Lesson Planner',
       render: (
-        <Link href="/planner" passHref>
+        <Link href="/lesson-planner" passHref>
           <Typography variant="h5" component="a" color="textPrimary">
             Lesson Planner
           </Typography>
@@ -396,21 +392,23 @@ const NavBar: React.FC<NavBarProps> = (props) => {
           {/* Nav Links @ SM and below */}
           <Box className={classes.hiddenMdUp}>
             <Grid container className={classes.mobileNavWrapper}>
-              <Grid item xs={4}>
+              <Grid item xs={3}>
                 <IconButton color="primary" onClick={toggleDrawer} aria-label="open drawer" size="medium">
                   <MenuIcon />
                 </IconButton>
               </Grid>
-              <Grid item xs={4} className={classes.logoWrapper}>
+              <Grid item xs={6} className={classes.logoWrapper}>
                 <Link href="/" passHref>
                   <img className={classes.logo} src="/logo.png" alt="logo" />
                 </Link>
               </Grid>
-              <Grid item xs={4} className={classes.iconBarLinksWrapper}>
-                {iconLinks.map((navLink, i) => {
-                  return <React.Fragment key={kebabCase(navLink.label)}>{renderNavLink(navLink)}</React.Fragment>
-                })}
-              </Grid>
+              <Box clone pr={1.5}>
+                <Grid item xs={3} className={classes.iconBarLinksWrapper}>
+                  {iconLinks.map((navLink, i) => {
+                    return <React.Fragment key={kebabCase(navLink.label)}>{renderNavLink(navLink)}</React.Fragment>
+                  })}
+                </Grid>
+              </Box>
             </Grid>
           </Box>
 
