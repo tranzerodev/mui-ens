@@ -6,7 +6,6 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 import { grey } from '@material-ui/core/colors'
 import { RATING_LIST, REVIEWS_PEOPLE_LIST } from './const'
 import ReviewCard from '../../components/ReviewCard'
-import WriteReview from './WriteReview'
 
 const useStyles = makeStyles((theme: Theme) => ({
   whiteCornerRadiusWrapper: {
@@ -48,7 +47,6 @@ const ProductReviews: React.FC = (props) => {
       <Button color="primary" variant="contained" fullWidth onClick={() => setPopup(true)}>
         Write a review
       </Button>
-      <WriteReview openPopup={popup} setOpenPopup={setPopup} />
       {RATING_LIST.map((item) => (
         <Box mb={1.875} mt={2} display="flex" alignItems="center">
           <Box clone width={70} mr={1.5}>
