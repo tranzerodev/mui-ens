@@ -1,3 +1,3 @@
-import LessonPlanner from '../src/views/LessonPlanner/LessonPlanner'
+import LessonPlanner from '../src/views/LessonPlanner/LessonPlannerLanding'
 
 export default LessonPlanner

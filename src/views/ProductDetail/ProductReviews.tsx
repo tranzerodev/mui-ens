@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Box, Typography, Theme, Button, Paper } from '@material-ui/core'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import Rating from '@material-ui/lab/Rating'
 import LinearProgress from '@material-ui/core/LinearProgress'
-import { grey } from '@material-ui/core/colors'
 import { RATING_LIST, REVIEWS_PEOPLE_LIST } from './const'
 import ReviewCard from '../../components/ReviewCard'
+import AddReviewModal from './AddReviewModal'
 
 const useStyles = makeStyles((theme: Theme) => ({
   whiteCornerRadiusWrapper: {
@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const ProductReviews: React.FC = (props) => {
   const classes = useStyles(props)
-  const [popup, setPopup] = useState(false)
 
   return (
     <Paper elevation={0} classes={{ root: classes.whiteCornerRadiusWrapper }}>
@@ -44,9 +43,15 @@ const ProductReviews: React.FC = (props) => {
       <Box clone fontWeight={400} fontSize={18} mb={2}>
         <Typography variant="h4">Star Rating: 4.8 (40 votes)</Typography>
       </Box>
-      <Button color="primary" variant="contained" fullWidth onClick={() => setPopup(true)}>
-        Write a review
-      </Button>
+      <AddReviewModal
+        toggle={(show) => (
+          <Box mt={3.5} display="flex" justifyContent="center">
+            <Button color="primary" variant="contained" fullWidth onClick={show}>
+              Write a review
+            </Button>
+          </Box>
+        )}
+      />
       {RATING_LIST.map((item) => (
         <Box mb={1.875} mt={2} display="flex" alignItems="center">
           <Box clone width={70} mr={1.5}>
